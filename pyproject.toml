@@ -29,26 +29,20 @@ classifiers = [
 ]
 dependencies = [
     "importlib-metadata",
-    "pydantic",
     "ruamel-yaml",
     "termcolor",
     "typing-extensions",
-    "structlog",
-    "types-requests",
     "devtools",
-    "structlog",
     "pyboxen>=1.2.0",
 ]
 requires-python = ">=3.11"
 [project.optional-dependencies]
 all = [
-  "pdm[refactoring,test,dev,docs,lint,tox]",
+  "pdm[refactoring,test,base,docs,lint]",
 ]
-dev = [
+base = [
   "pre-commit",
   "commitizen",
-  "tox",
-  "tox-pdm",
 ]
 docs = [
   "furo",
@@ -56,8 +50,8 @@ docs = [
   "sphinx-autodoc-typehints",
 ]
 lint = [
-  "ruff",
-  "mypy",
+  "ruff>=0.1.8",
+  "mypy>=1.7.1",
   "mypy-extensions",
 ]
 refactoring = [
