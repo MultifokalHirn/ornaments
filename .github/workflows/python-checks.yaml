@@ -2,19 +2,19 @@
 name: Python Checks
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
     paths-ignore:
       - "docs/**"
-      - "mypyc/doc/**"
       - "**/*.rst"
       - "**/*.md"
       - .gitignore
-      - CREDITS
       - LICENSE
-  workflow_dispatch:
+      - CHANGELOG.md
+      - CONTRIBUTING.md
 
 permissions:
   contents: read
@@ -53,15 +53,20 @@ jobs:
           key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('pdm.lock') }}
           restore-keys: |
             venv-${{ runner.os }}-${{ matrix.python-version }}-
-      - name: Setup environment
+        id: cache
+      - name: Setup virtual environment
+        if: steps.cache.outputs.cache-hit != 'true'
         run: make bootstrap
-      - name: Install dependencies
-        run: make dev
+
+      - name: Install prod and dev dependencies
+        run: make prod dev
 
       - name: Run tests
         run: make test
+
       - name: Run typechecks
         run: make mypy
+
       - name: Lint
         run: make lint
 

@@ -191,7 +191,7 @@ clean-venv:
 	-$(RMDIR) "$(VENVDIR)"
 
 .PHONY: show-venv
-show-venv: venv
+show-venv: venv ## Show versions of Python and pip, and the path to the virtual environment
 	@$(VENV)/python -c "import sys; print('Python ' + sys.version.replace('\n',''))"
 	@$(VENV)/pip --version
 	@echo venv: $(VENVDIR)
@@ -223,10 +223,11 @@ VENVDEPENDS+=$(VENV_LOCAL_PACKAGE)
 endif
 
 $(VENV):
+	$(PY) -m pip install --upgrade pip pipx
+	$(PY) -m pipx install pdm
 	$(PY) -m venv $(VENVDIR)
 	$(VENV)/python -m pip install --upgrade pip setuptools wheel pdm
 	$(VENV)/pdm config python.use_venv true
-	# $(VENV)/pdm use --venv in-project
 
 $(VENV)/$(MARKER): $(VENVDEPENDS) | $(VENV)
 # ifneq ($(strip $(REQUIREMENTS_TXT)),)

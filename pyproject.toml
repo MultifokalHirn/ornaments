@@ -78,9 +78,6 @@ Homepage = "https://github.com/MultifokalHirn/ornaments"
 Repository = "https://github.com/MultifokalHirn/ornaments"
 # Documentation = "https://"
 
-[project.scripts]
-cli = "ornaments.cli:main"
-
 [build-system]
 build-backend = "pdm.backend"
 requires = ["pdm-backend"]
@@ -102,21 +99,21 @@ lock = {shell = """ \
 update-all = {shell = """ \
                         printf 'Updating all dependencies...' \
                         && pdm update -G :all \
-                        && printf '\t✅\n' \
+                        && printf '\t\t✅\n' \
                       """}
 # CI: format, lint, mypy, test
 format = {shell = """ \
                     printf 'Formatting...' \
                     && .venv/bin/ruff --config=./pyproject.toml --fix src/ tests/ docs/ \
-                    && printf '\t✅\n' \
+                    && printf '\t\t✅\n' \
                   """}
 lint = {shell = """ \
-                  printf 'Running Linter...' \
+                  printf 'Linting...' \
                   && .venv/bin/ruff check --config=./pyproject.toml src/ tests/ docs/ \
-                  && printf '\t✅\n' \
+                  && printf '\t\t✅\n' \
                 """}
 mypy = {shell = """ \
-                  printf 'Running type checker...' \
+                  printf 'Type-checking...' \
                   && .venv/bin/mypy --no-error-summary --install-types --config-file=./pyproject.toml \
                   && printf '\t✅\n' \
                 """}
@@ -128,9 +125,9 @@ test = {shell = """ \
                 """}
 ci = {shell = """ \
                 pdm run format \
-                && pdm run lint \
-                && pdm run mypy \
-                && pdm run test \
+                ; pdm run lint \
+                ; pdm run mypy \
+                ; pdm run test \
               """}
 
 
@@ -146,7 +143,6 @@ ignore_missing_imports = true
 pretty = true
 # install_types = true # pre-commit has issues with this, so we use this as flag in the script
 python_version = "3.11"
-show_error_codes = true
 strict = true
 warn_redundant_casts = true
 warn_unused_ignores = false
@@ -188,7 +184,7 @@ skip_covered = false
 sort = "Cover"
 
 [tool.commitizen]
-version = "1.0.0"
+version = "0.0.0"
 version_files = [
   "src/ornaments/__version__.py",
   "pyproject.toml:version",

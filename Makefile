@@ -8,20 +8,39 @@ help: ## Show available commands and their descriptions
 	@awk -F ':.*?## ' '/^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 .PHONY: help
 
-bootstrap: python-version clean-venv venv ## Delete existing & create new venv
+.PHONY: in-venv
+in-venv: ## make sure we're in the venv
+	$(VENV)/pdm config python.use_venv true
 .PHONY: bootstrap
+bootstrap: python-version clean-venv venv ## Delete existing & create new venv
 
-prod:  ## install prod dependencies
-	$(VENV)/pdm install
+prod: in-venv  ## install package dependencies
+	# installing prod dependencies...
+	$(VENV)/pdm install --prod
 .PHONY: prod
 
-dev:  ## install all dependencies in lock file
-	$(VENV)/pdm install -G :all
+dev: in-venv prod  ## install (all) dev dependencies
+	# installing dev dependencies...
+	$(VENV)/pdm install -dG :all
 .PHONY: dev
 
+bootstrap-dev:  ## set up a fresh dev environment
+	# setting up a fresh dev environment...
+	$(MAKE) bootstrap
+	$(MAKE) dev
+	$(MAKE) setup-pre-commit
+.PHONY: bootstrap-dev
+
+setup-pre-commit: in-venv ## install pre-commit hooks
+	# installing pre-commit hooks...
+	$(VENV)/pre-commit autoupdate
+	$(VENV)/pre-commit install && pre-commit install --hook-type commit-msg
+.PHONY: setup-pre-commit
+
 update: ## update lock file if needed
-	pdm self update
-	pdm run update-all
+	$(VENV)/pdm self update
+	$(VENV)/pdm run update-all
+	$(VENV)/pre-commit autoupdate
 .PHONY: update
 
 lint: ## Run linter on python files
@@ -56,7 +75,7 @@ define find.functions
 endef
 
 python-version: ## Show the python version
-	# Show the python version
+	# Using the following python version:
 	@python --version
 .PHONY: python-version
 
