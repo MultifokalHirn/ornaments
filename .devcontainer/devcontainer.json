@@ -1,0 +1,119 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python Project",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+	// "dockerComposeFile": "compose.yaml",
+	// "service": "devcontainer",
+	"features": {
+		"ghcr.io/devcontainers/features/sshd:1": {},
+		"ghcr.io/devcontainers-contrib/features/coverage-py:2": {},
+		"ghcr.io/devcontainers-contrib/features/exa:1": {},
+		// "ghcr.io/devcontainers-contrib/features/mkdocs:2": {},
+		"ghcr.io/devcontainers-contrib/features/mypy:2": {},
+		"ghcr.io/devcontainers-contrib/features/pdm:2": {},
+		"ghcr.io/devcontainers-contrib/features/pipx-package:1": {},
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+		"ghcr.io/devcontainers-contrib/features/ruff:1": {},
+		"ghcr.io/devcontainers-contrib/features/tox:2": {},
+		"ghcr.io/devcontainers-contrib/features/vulture:2": {},
+		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {},
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {},
+		"ghcr.io/jungaretti/features/make:1": {},
+		"ghcr.io/warrenbuckley/codespace-features/sqlite:1": {},
+		// "ghcr.io/eliises/devcontainer-features/devcontainers-cli:1": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-git:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-nano:0": {},
+		"ghcr.io/cirolosapio/devcontainers-features/alpine-ohmyzsh:0": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"SirTori.indenticator",
+				"charliermarsh.ruff",
+				"tushortz.python-extended-snippets",
+				"ms-python.mypy-type-checker",
+				"DavidAnson.vscode-markdownlint",
+				"bierner.markdown-mermaid",
+				"yzhang.markdown-all-in-one",
+				"waderyan.gitblame",
+				"github.vscode-github-actions",
+				"formulahendry.auto-rename-tag",
+				"aaron-bond.better-comments",
+				"redhat.vscode-yaml",
+				"njqdev.vscode-python-typehint",
+				"KevinRose.vsc-python-indent",
+				"bierner.markdown-preview-github-styles"
+			],
+			"[python]": {
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "charliermarsh.ruff",
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true,
+					"source.fixAll": true
+				},
+			},
+			"ruff.lint.args": [
+				"--config=./pyproject.toml"
+			],
+			"ruff.enable": true,
+			"flake8.args": [
+				"--config=setup.cfg"
+			],
+			"mypy-type-checker.args": [
+				"--config-file=pyproject.toml"
+			],
+			"mypy-type-checker.severity": {
+				"error": "Error",
+				"note": "Information"
+			},
+			"mypy-type-checker.ignorePatterns": [],
+			"[markdown]": {
+				"editor.codeActionsOnSave": {
+					"source.fixAll": true
+				}
+			},
+			"[toml]": {
+				"editor.formatOnSave": false,
+				"editor.defaultFormatter": "be5invis.toml"
+			},
+			"evenBetterToml.formatter.reorderKeys": false,
+			"telemetry.telemetryLevel": "off",
+			"[properties]": {
+				"editor.formatOnSave": false,
+				"editor.defaultFormatter": null
+			},
+			"[yaml]": {
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "redhat.vscode-yaml"
+			},
+			"editor.wordWrap": "on",
+			"python.analysis.typeCheckingMode": "basic",
+			"editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",
+			"editor.cursorStyle": "block"
+		},
+		// "codespaces": {
+		// 	"repositories": {
+		// 		"MultifokalHirn/python_template_repo": {
+		// 			"permissions": {
+		// 				"issues": "write"
+		// 			}
+		// 		}
+		// 	},
+		// 	"openFiles": [
+		// 		"README.md"
+		// 	]
+		// }
+	}
+}
+// Features to add to the dev container. More info: https://containers.dev/features.
+// "features": {},
+// Use 'forwardPorts' to make a list of ports inside the container available locally.
+// "forwardPorts": [],
+// Use 'postCreateCommand' to run commands after the container is created.
+// "postCreateCommand": "pip3 install --user -r requirements.txt",
+// Configure tool-specific properties.
+// "customizations": {},
+// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+// "remoteUser": "root"

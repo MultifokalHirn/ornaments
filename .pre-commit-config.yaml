@@ -1,0 +1,97 @@
+# please, regularly run `pre-commit autoupdate`
+repos:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.13.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-case-conflict
+      - id: check-added-large-files
+      - id: destroyed-symlinks
+      # - id: check-json
+      - id: detect-private-key
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.8
+    hooks:
+      - id: ruff
+        args: [--config=./pyproject.toml]
+  # - repo: https://github.com/pre-commit/mirrors-mypy # TODO: run mypy as pdm would - currently this is not working
+  #   rev: v1.7.1
+  #   hooks:
+  #     - id: mypy
+  #       additional_dependencies: [types-all, pydantic]
+  #       args: [--config-file=./pyproject.toml]
+  #       files: ^src/
+  #       entry: mypy src/
+  #       pass_filenames: false
+  # - id: pytest-cov-src-packages
+  #   name: pytest-cov-src-packages
+  #   # language: system
+  #   entry: pdm run test
+  #   types: [python]
+  #   stages: [commit]
+  #   pass_filenames: false
+  #   always_run: true
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        additional_dependencies:
+          - tomli
+  # - repo: https://github.com/guilatrova/tryceratops
+  #   rev: v2.3.2
+  #   hooks:
+  #     - id: tryceratops
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
+        args: [--py311-plus]
+  # - repo: https://github.com/jendrikseipp/vulture
+  #   rev: v2.3
+  #   hooks:
+  #     - id: vulture
+  # - repo: https://github.com/dosisod/refurb # requires python>=3.10
+  #   rev: "v1.25.0"
+  #   hooks:
+  #     - id: refurb
+  - repo: https://codeberg.org/frnmst/md-toc
+    rev: "8.2.2"
+    hooks:
+      - id: md-toc
+        args: [-p, "cmark", "-l6"] # CLI options
+  # - repo: https://github.com/mgedmin/check-manifest
+  #   rev: "0.49"
+  #   hooks:
+  #     - id: check-manifest
+  # - repo: https://github.com/IamTheFij/docker-pre-commit
+  #   rev: v3.0.1
+  #   hooks:
+  #     - id: docker-compose-check
+  #       files: docker-compose.*.y[a]{0,1}ml$
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.15
+    hooks:
+      - id: validate-pyproject
+  - repo: https://github.com/pdm-project/pdm
+    rev: 2.11.1
+    hooks:
+      - id: pdm-lock-check
+      - id: pdm-export
+        # pdm export -o requirements.txt --without-hashes --prod
+        args: ["-o", "requirements.txt", "--without-hashes", "--prod"]
+        files: ^pdm.lock$
+  - repo: https://github.com/pdm-project/pdm
+    rev: 2.11.1
+    hooks:
+      - id: pdm-export
+        args: ["-o", "requirements-dev.txt", "--without-hashes", "-G", ":dev"]
+        files: ^pdm.lock$

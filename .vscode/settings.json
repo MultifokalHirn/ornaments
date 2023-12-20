@@ -1,0 +1,45 @@
+{
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll": "explicit"
+        },
+    },
+    "ruff.lint.args": [
+        "--config=./pyproject.toml"
+    ],
+    "ruff.enable": true,
+    "mypy-type-checker.args": [
+        "--config-file=pyproject.toml"
+    ],
+    "mypy-type-checker.severity": {
+        "error": "Error",
+        "note": "Information"
+    },
+    "mypy-type-checker.ignorePatterns": [],
+    "[markdown]": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        },
+    },
+    "[toml]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": "be5invis.toml"
+    },
+    "evenBetterToml.formatter.reorderKeys": false,
+    "[properties]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
+    },
+    "[yaml]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "editor.wordWrap": "on",
+    "python.analysis.typeCheckingMode": "basic",
+    "editor.fontFamily": "\"Geist Mono Medium\", \"LigaSFMonoNerdFont\",\"Hack Nerd Font\", \"Noto Mono\",  \"Jetbrains Mono Regular\", Menlo, Monaco, 'Courier New', monospace",
+    "editor.cursorStyle": "block",
+    "python.analysis.autoImportCompletions": true
+}

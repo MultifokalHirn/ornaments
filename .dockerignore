@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*.pyd
+./**/*.pyc
+__pycache__
+
+.vscode
+Dockerfile*
+docker-compose*
+dist
+.git
+*.DS_Store
