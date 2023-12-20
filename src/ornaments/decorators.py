@@ -1,10 +1,13 @@
-from functools import _Wrapped, wraps
-from typing import Any, Callable
+import logging
+from collections.abc import Callable
+from functools import wraps
+from typing import Any
 
-def only_called_once(scope="object"):
+
+def only_called_once(scope="object", enforce: bool = False):
     """
     Decorator that ensures a function is only called once in a given scope.
-    
+
     # Example usage:
         class MyClass:
             @only_called_once(scope="object")
@@ -18,7 +21,7 @@ def only_called_once(scope="object"):
         @only_called_once(scope="session")
         def my_function():
             print("Called my_function")
-    
+
     """
     if scope not in {"object", "class", "session"}:
         raise ValueError("Invalid scope. Must be 'object', 'class', or 'session'.")
@@ -42,9 +45,12 @@ def only_called_once(scope="object"):
                 setattr(wrapper, "called", called)
                 return func(*args, **kwargs)
             else:
-                raise Exception(f"Function {func.__name__} can only be called once per {scope}.")
+                msg = f"Function {func.__name__} has already been called in this {scope}."
+                if enforce:
+                    raise Exception(msg)
+                else:
+                    logging.error(msg=msg)
+
         return wrapper
 
     return decorator
-
-

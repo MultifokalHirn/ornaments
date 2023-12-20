@@ -1,34 +1,38 @@
-from ornaments.decorators import only_called_once
 import pytest
+from ornaments.decorators import only_called_once
 
 
-class TestOnlyCalledOnceDecorator:
-    def test_object_scope(self):
+class TestEnforcedOnlyCalledOnceDecorator:
+    def test_object_scope(self) -> None:
         class MyClass:
-            @only_called_once(scope="object")
-            def my_method(self):
-                return "Called my_method"
+            @only_called_once(scope="object", enforce=True)
+            def my_method(self) -> str:
+                return "my_method"
 
         obj = MyClass()
-        assert obj.my_method() == "Called my_method"
-        with pytest.raises(Exception):
+        assert obj.my_method() == "my_method"
+        with pytest.raises(expected_exception=Exception):
             obj.my_method()
 
-    def test_class_scope(self):
+    def test_class_scope(self) -> None:
         class MyClass:
-            @only_called_once(scope="class")
-            def my_class_method():
-                return "Called my_class_method"
+            @only_called_once(scope="class", enforce=True)
+            def my_class_scope_method(self) -> str:
+                return "my_class_scope_method"
 
-        assert MyClass.my_class_method() == "Called my_class_method"
-        with pytest.raises(Exception):
-            MyClass.my_class_method()
+        obj1 = MyClass()
+        obj2 = MyClass()
+        assert obj1.my_class_scope_method() == "my_class_scope_method"
 
-    @only_called_once(scope="session")
-    def my_function():
-        return "Called my_function"
+        with pytest.raises(expected_exception=Exception):
+            obj1.my_class_scope_method()
+            obj2.my_class_scope_method()
 
-    def test_session_scope(self):
-        assert my_function() == "Called my_function"
-        with pytest.raises(Exception):
-            my_function()
+    @only_called_once(scope="session", enforce=True)
+    def my_session_function(self) -> str:
+        return "my_session_function"
+
+    def test_session_scope(self) -> None:
+        assert self.my_session_function() == "my_session_function"
+        with pytest.raises(expected_exception=Exception):
+            self.my_session_function()

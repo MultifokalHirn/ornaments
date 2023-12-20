@@ -64,17 +64,13 @@ refactoring = [
   "pyupgrade>=3.15.0",
 ]
 test = [
-  "covdefaults>=2.3",
-  "coverage-badge",
-  "coverage[toml]",
-  "pytest-mypy",
-  "pytest-xdist",
-  "pytest",
-  "types-mock",
-]
-tox = [
-  "tox",
-  "tox-pdm>=0.5",
+    "covdefaults>=2.3",
+    "coverage-badge",
+    "coverage>=7.3.4",
+    "pytest-mypy",
+    "pytest-xdist",
+    "pytest>=7.4.3",
+    "types-mock",
 ]
 [project.urls]
 Changelog = "https://github.com/MultifokalHirn/ornaments/blob/main/CHANGELOG/"
@@ -136,9 +132,6 @@ ci = {shell = """ \
                 && pdm run mypy \
                 && pdm run test \
               """}
-docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
-# run app
-cli = {cmd = ".venv/bin/python -m ornaments.cli"}
 
 
 ####################################################################################################
