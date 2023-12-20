@@ -6,6 +6,8 @@
 
 # Ornaments
 
+***Under construction.***
+
 Ornaments contains a collection of python decorators that make it easy to communicate and enforce invariants.
 
 ![py3](https://img.shields.io/badge/python->=3.11.0-3776AB?logo=python&logoColor=FFFFFF&style=flat-square)
