@@ -1,8 +1,8 @@
-[![Tests](https://github.com/MultifokalHirn/python_template_repo/actions/workflows/python-checks.yaml/badge.svg?branch=main)](https://github.com/MultifokalHirn/python_template_repo/actions/workflows/python-checks.yaml)
+[![Tests](https://github.com/MultifokalHirn/ornaments/actions/workflows/python-checks.yaml/badge.svg?branch=main)](https://github.com/MultifokalHirn/ornaments/actions/workflows/python-checks.yaml)
 ![Coverage](./docs/img/coverage.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/MultifokalHirn/python_template_repo)
-![GitHub issues](https://img.shields.io/github/issues/MultifokalHirn/python_template_repo)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MultifokalHirn/python_template_repo)
+![GitHub last commit](https://img.shields.io/github/last-commit/MultifokalHirn/ornaments)
+![GitHub issues](https://img.shields.io/github/issues/MultifokalHirn/ornaments)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MultifokalHirn/ornaments)
 
 # Python Project Template
 
@@ -52,8 +52,8 @@ TODO: embed as html to specify font family
 ### Quickstart
 
 ``` bash
-git clone https://github.com/MultifokalHirn/python_template_repo.git
-cd python_template_repo/
+git clone https://github.com/MultifokalHirn/ornaments.git
+cd ornaments/
 
 make bootstrap     # sets up virtual environment and installs pdm
 make dev           # sets up dev environment and installs dependencies
@@ -106,7 +106,7 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and c
 
 Depending on the tool of configuration detail, I either actively decided against something or I have not yet tried them.
 
-If you have any suggestions for improvements, or tools to check out, please [file an issue](https://github.com/MultifokalHirn/python_template_repo/issues).
+If you have any suggestions for improvements, or tools to check out, please [file an issue](https://github.com/MultifokalHirn/ornaments/issues).
 
 ### Tried and Decided Against
 
@@ -123,7 +123,7 @@ If you have any suggestions for improvements, or tools to check out, please [fil
 
 ## Troubleshooting
 
-> In this section, you will find some common issues you might encounter and how to resolve them. If you are experiencing any issues that are not covered here, please [file an issue](https://github.com/MultifokalHirn/python_template_repo/issues).
+> In this section, you will find some common issues you might encounter and how to resolve them. If you are experiencing any issues that are not covered here, please [file an issue](https://github.com/MultifokalHirn/ornaments/issues).
 
 ### I does not work! I tried everything
 
@@ -133,4 +133,4 @@ Well, have you tried turning it off and on again?
 
 This project is authored by Lennard Wolf and open sourced under MIT license, see [`LICENSE`](./LICENSE) for details.
 
-![License](https://img.shields.io/github/license/MultifokalHirn/python_template_repo)
+![License](https://img.shields.io/github/license/MultifokalHirn/ornaments)

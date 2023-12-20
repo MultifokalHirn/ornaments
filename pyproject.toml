@@ -3,8 +3,8 @@
 ####################################################################################################
 
 [project]
-name = "python_template_repo"
-version = "1.0.0"
+name = "ornaments"
+version = "0.0.0"
 authors = [{name = "Lennard Wolf", email = "7870758+MultifokalHirn@users.noreply.github.com"}]
 description = """ \
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
@@ -77,13 +77,13 @@ tox = [
   "tox-pdm>=0.5",
 ]
 [project.urls]
-Changelog = "https://github.com/MultifokalHirn/python_template_repo/blob/main/CHANGELOG/"
-Homepage = "https://github.com/MultifokalHirn/python_template_repo"
-Repository = "https://github.com/MultifokalHirn/python_template_repo"
+Changelog = "https://github.com/MultifokalHirn/ornaments/blob/main/CHANGELOG/"
+Homepage = "https://github.com/MultifokalHirn/ornaments"
+Repository = "https://github.com/MultifokalHirn/ornaments"
 # Documentation = "https://"
 
 [project.scripts]
-cli = "python_template_repo.cli:main"
+cli = "ornaments.cli:main"
 
 [build-system]
 build-backend = "pdm.backend"
@@ -138,7 +138,7 @@ ci = {shell = """ \
               """}
 docs = {cmd = ".venv/bin/sphinx-build -b html docs/ docs/_build"}
 # run app
-cli = {cmd = ".venv/bin/python -m python_template_repo.cli"}
+cli = {cmd = ".venv/bin/python -m ornaments.cli"}
 
 
 ####################################################################################################
@@ -166,7 +166,7 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 [tool.coverage.run]
-source = ["src/python_template_repo"]
+source = ["src/ornaments"]
 branch = true
 # parallel = true
 plugins = ["covdefaults"]
@@ -197,7 +197,7 @@ sort = "Cover"
 [tool.commitizen]
 version = "1.0.0"
 version_files = [
-  "src/python_template_repo/__version__.py",
+  "src/ornaments/__version__.py",
   "pyproject.toml:version",
 ]
 
@@ -258,7 +258,7 @@ line-ending = "auto"
 ]
 
 [tool.pdm]
-# version = {from = "src/python_template_repo/__init__.py"}
+# version = {from = "src/ornaments/__init__.py"}
 
 [tool.pdm.build]
 excludes = ["./**/.git"]
@@ -268,5 +268,5 @@ source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 
 [tool.pytest.ini_options]
 filterwarnings = ["ignore::DeprecationWarning"]
-# cov = ["src/python_template_repo"]
-# addopts = "--cov=python_template_repo --cov-report html"
+# cov = ["src/ornaments"]
+# addopts = "--cov=ornaments --cov-report html"

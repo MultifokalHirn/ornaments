@@ -18,7 +18,7 @@ __all__ = [
     "__title__",
     "__description__",
     "__version__",
-    "__author__",
+    # "__author__",
     "__license__",
 ]
 
@@ -28,7 +28,7 @@ Deprecated public re-exports - these will be removed in a future release.
 Example usage:
 
     ```python
-    from python_template_repo import deprecated_reexport
+    from ornaments import deprecated_reexport
 
     _deprecated: dict[str, Any] = {
         "deprecated_reexport": deprecated_reexport,
