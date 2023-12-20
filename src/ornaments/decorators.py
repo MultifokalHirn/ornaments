@@ -1,7 +1,14 @@
-import logging
+import warnings
 from collections.abc import Callable
 from functools import wraps
-from typing import Any
+from typing import Any, Final
+
+from ._exceptions import CalledTooOftenError, CalledTooOftenWarning
+
+CLASS_SCOPE: Final[set] = {"class"}
+SESSION_SCOPE: Final[set] = {"session"}
+OBJECT_SCOPE: Final[set] = {"instance", "object"}
+ALL_SCOPES: Final[set] = CLASS_SCOPE | SESSION_SCOPE | OBJECT_SCOPE
 
 # def log_parameters(scope="object", enforce: bool = False) -> Callable[..., Callable[..., Any]]:
 # TODO: Implement this decorator
@@ -23,7 +30,7 @@ from typing import Any
 #             print("Called my_function")
 
 #     """
-#     if scope not in {"object", "class", "session"}:
+#     if scope not in ALL_SCOPES:
 #         raise ValueError("Invalid scope. Must be 'object', 'class', or 'session'.")
 
 #     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -56,7 +63,7 @@ from typing import Any
 #             print("Called my_function")
 
 #     """
-#     if scope not in {"object", "class", "session"}:
+#     if scope not in ALL_SCOPES:
 #         raise ValueError("Invalid scope. Must be 'object', 'class', or 'session'.")
 
 #     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -90,7 +97,7 @@ from typing import Any
 #             print("Called my_function")
 
 #     """
-#     if scope not in {"object", "class", "session"}:
+#     if scope not in ALL_SCOPES:
 #         raise ValueError("Invalid scope. Must be 'object', 'class', or 'session'.")
 
 #     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -123,7 +130,7 @@ from typing import Any
 #             print("Called my_function")
 
 #     """
-#     if scope not in {"object", "class", "session"}:
+#     if scope not in ALL_SCOPES:
 #         raise ValueError("Invalid scope. Must be 'object', 'class', or 'session'.")
 
 #     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -202,48 +209,54 @@ def only_called_once(scope="object", enforce: bool = False) -> Callable[..., Cal
     """
     Decorator that ensures a function is only called once in a given scope.
 
-    # Example usage:
+    Example usage:
+
+    ```python
         class MyClass:
-            @only_called_once(scope="object")
-            def my_method(self):
-                print("Called my_method")
+            @only_called_once(scope="object", enforce=True)
+            def my_method(self) -> str:
+                return "Called my_method"
 
-            @only_called_once(scope="class")
-            def my_class_method():
-                print("Called my_class_method")
+            @only_called_once(scope="class", enforce=True)
+            def my_class_scope_method(self) -> str:
+                # only applicable if the class itself is instantiated more than once
+                return "Called my_class_scope_method"
 
-        @only_called_once(scope="session")
-        def my_function():
-            print("Called my_function")
 
+        @only_called_once(scope="session", enforce=True)
+        def my_function() -> str:
+            return "Called my_function"
+    ```
     """
-    if scope not in {"object", "class", "session"}:
-        raise ValueError("Invalid scope. Must be 'object', 'class', or 'session'.")
 
     def decorator(func: Callable) -> Callable:
         @wraps(wrapped=func)
         def wrapper(*args, **kwargs) -> Any:
-            if scope == "object":
+            if scope in OBJECT_SCOPE:
                 # Use the id of the instance for object scope
-                key = (id(args[0]), func)
-            elif scope == "class":
-                # Use the class of the instance for class scope
-                key = (args[0].__class__, func)
-            else:  # session scope
-                # Use the function itself for session scope
-                key = (func,)
-
-            called: set[Any | tuple[Any]] = getattr(wrapper, "called", set())
-            if key not in called:
-                called.add(key)
-                setattr(wrapper, "called", called)
-                return func(*args, **kwargs)
+                call_scope = (id(args[0]), func)
+            elif scope in CLASS_SCOPE:
+                # Use the class as identifier for session scope
+                # Note: only really useful if the class itself is instantiated more than once
+                # - otherwise, this will behave just as session scope
+                call_scope = (args[0].__class__, func)
+            elif scope in SESSION_SCOPE:  # session scope
+                # Use the function itself as identifier for session scope
+                call_scope = (func,)
             else:
-                msg = f"Function {func.__name__} has already been called in this {scope}."
-                if enforce:
-                    raise Exception(msg)
+                raise ValueError(f"Invalid scope. Must be one of {OBJECT_SCOPE | CLASS_SCOPE | SESSION_SCOPE}.")
+
+            calls_in_scope: set[Any | tuple[Any]] = getattr(wrapper, "calls_in_scope", set())
+            if call_scope in calls_in_scope:
+                msg = f"Function {func.__name__} has already been called in {scope}. call_scope={call_scope}"
+                if enforce is True:
+                    raise CalledTooOftenError(msg)
                 else:
-                    logging.error(msg=msg)
+                    warnings.warn(message=msg, category=CalledTooOftenWarning)
+            else:
+                calls_in_scope.add(call_scope)
+                setattr(wrapper, "calls_in_scope", calls_in_scope)
+                return func(*args, **kwargs)
 
         return wrapper
 

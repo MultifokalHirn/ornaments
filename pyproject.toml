@@ -119,7 +119,7 @@ mypy = {shell = """ \
                 """}
 test = {shell = """ \
                   printf 'Running tests...' \
-                  && .venv/bin/coverage run -m pytest tests/ --show-capture=log -p no:logging -p no:warnings \
+                  && .venv/bin/coverage run -m pytest tests/ --show-capture=log -p no:logging \
                   && .venv/bin/coverage report \
                   && .venv/bin/coverage-badge -o docs/img/coverage.svg -f \
                 """}
@@ -256,6 +256,9 @@ package-dir = "src"
 source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 
 [tool.pytest.ini_options]
-filterwarnings = ["ignore::DeprecationWarning"]
+filterwarnings = [
+  "ignore::DeprecationWarning",
+  "ignore::ornaments._exceptions.CalledTooOftenWarning",
+]
 # cov = ["src/ornaments"]
 # addopts = "--cov=ornaments --cov-report html"
