@@ -14,9 +14,11 @@ def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[.
     Example usage:
 
     ```python
+        from ornaments.invariants.only_called_once import only_called_once
+
         @only_called_once(scope="session", enforce=True)
-        def my_function() -> str:
-            return "Called my_function"
+        def only_callable_once() -> str:
+            return "First!"
 
     ```
     """

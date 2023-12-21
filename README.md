@@ -46,7 +46,7 @@ It aims to do so through meaningful `@decorator` functions that help other devel
 
 ### Why decorators?
 
-A `@decorator` 'talks' *about other code* in a way that is <u>understandable for both the human reader *as well as* the interpreter</u>. By being meaningful to both, `@decorator` based documentation can bypass the common disconnect between code comments and reality.
+A `@decorator` 'talks about' other code in a way that is <u>understandable for both the human reader *as well as* the interpreter</u>. By being meaningful to *both*, `@decorator` based documentation can bypass the (all to common) disconnect between documentation and code.
 
 ### Example
 
@@ -57,19 +57,19 @@ from ornaments.invariants.only_called_once import only_called_once
 def only_once_callable_function() -> None:
     return None
 
-# This should not raise an error
+# -----
+
 only_once_callable_function()
+>>> None
 
 # This should raise an error
 only_once_callable_function()
->>> only_once_callable_function()
-Traceback (most recent call last):
-  File "<input>", line 1, in <module>
-    only_once_callable_function()
-  File "./ornaments/src/ornaments/invariants/only_called_once.py", line 45, in wrapper
-    raise CalledTooOftenError(msg)
-ornaments.exceptions.CalledTooOftenError: Function only_once_callable_function has already been called in session. call_scope=(4522676512, <function only_once_callab
-le_function at 0x10d929120>)
+>>> Traceback (most recent call last):
+    File "<input>", line 1, in <module>
+      only_once_callable_function()
+    File "./ornaments/src/ornaments/invariants/only_called_once.py", line 45, in wrapper
+      raise CalledTooOftenError(msg)
+    ornaments.exceptions.CalledTooOftenError: Function only_once_callable_function has already been called in session. call_scope=(4522676512, <function only_once_callable_function at 0x10d929120>)
 ```
 
 <!-- <img width="1421" alt="Screenshot 2023-12-21 at 01 48 35" src="https://github.com/MultifokalHirn/ornaments/assets/7870758/8fce40d2-65e4-4c1f-8077-d5eb40641bc5"> -->
@@ -102,6 +102,10 @@ ornaments/
 ```
 
 ## Addendum
+>
+> See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
+
+![License](https://img.shields.io/github/license/MultifokalHirn/ornaments)
 
 <img align="center" src="./docs/img/o1.png" width="100" height="100" />
 <img align="center" src="./docs/img/o2.png" width="100" height="100" />
@@ -109,8 +113,4 @@ ornaments/
 <br />
 <br />
 
-> See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
-
-Author: [`MultifokalHirn`](github.com/MultifokalHirn)
-
-![License](https://img.shields.io/github/license/MultifokalHirn/ornaments)
+**Author -** [`MultifokalHirn`](github.com/MultifokalHirn)
