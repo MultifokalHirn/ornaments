@@ -1,4 +1,4 @@
-# def validate_parameters(scope="object", enforce: bool = False) -> Callable[..., Callable[..., Any]]:
+# def validate_parameters(enforce: bool = False) -> Callable[..., Callable[..., Any]]:
 # TODO: Implement this decorator
 #     """
 #     Checks the parameters against a provided validation function or a set of rules before executing the function. If the parameters don't meet the criteria, it can raise an exception or log a warning.

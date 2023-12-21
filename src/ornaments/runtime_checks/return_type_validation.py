@@ -1,31 +1,41 @@
-# def checked_return_type(scope="object", enforce: bool = False) -> Callable[..., Callable[..., Any]]:
-# TODO: Implement this decorator
-#     """
-#     Checks that the return value of the function is of a specified type. If not, it raises an exception or logs a warning.
+import warnings
+from collections.abc import Callable
+from functools import wraps
+from typing import Any
 
-#     # Example usage:
-#         class MyClass:
-#             @checked_return_type(scope="object")
-#             def my_method(self):
-#                 print("Called my_method")
+from ..exceptions import InvalidReturnTypeError, InvalidReturnTypeWarning
 
-#             @checked_return_type(scope="class")
-#             def my_class_method():
-#                 print("Called my_class_method")
 
-#         @checked_return_type(scope="session")
-#         def my_function():
-#             print("Called my_function")
+def checked_return_type(enforce: bool = False) -> Callable[..., Any]:
+    """
+    Checks that the return value of the function is of a specified type. If not, it raises an exception or raises a warning.
 
-#     """
-#     if scope not in ALL_SCOPES:
-#         raise ValueError("Invalid scope. Must be 'object', 'class', or 'session'.")
+    # Example usage:
 
-#     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
-#         @wraps(wrapped=func)
-#         def wrapper(*args, **kwargs) -> Any:
-#             pass
+        @checked_return_type
+        def my_function() -> int:
+            return 1
 
-#         return wrapper
+    """
 
-#     return decorator
+    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+        expected_type = func.__annotations__.get("return")
+        if expected_type is None:
+            raise ValueError("Expected type must be specified in the function annotations.")
+
+        @wraps(wrapped=func)
+        def wrapper(*args, **kwargs) -> Any:
+            result = func(*args, **kwargs)
+
+            if not isinstance(result, expected_type):
+                msg = f"Function {func.__name__} returned object with wrong type. result={result}"
+                if enforce is True:
+                    raise InvalidReturnTypeError(msg)
+                else:
+                    warnings.warn(message=msg, category=InvalidReturnTypeWarning)
+
+            return result
+
+        return wrapper
+
+    return decorator

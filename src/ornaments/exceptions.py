@@ -4,3 +4,11 @@ class CalledTooOftenWarning(UserWarning):
 
 class CalledTooOftenError(Exception):
     pass
+
+
+class InvalidReturnTypeWarning(UserWarning):
+    pass
+
+
+class InvalidReturnTypeError(Exception):
+    pass
