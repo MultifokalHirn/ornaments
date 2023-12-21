@@ -14,7 +14,7 @@ def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[.
     Example usage:
 
     ```python
-        from ornaments.invariants.only_called_once import only_called_once
+        from ornaments.invariants import only_called_once
 
         @only_called_once(scope="session", enforce=True)
         def only_callable_once() -> str:
@@ -40,17 +40,16 @@ def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[.
             else:
                 raise ValueError(f"Invalid scope. Must be one of {OBJECT_SCOPE | CLASS_SCOPE | SESSION_SCOPE}.")
 
-            calls_in_scope: set[Any | tuple[Any]] = getattr(wrapper, "calls_in_scope", set())
-            if call_scope in calls_in_scope:
+            previous_call_scopes: set[Any | tuple[Any]] = getattr(wrapper, "calls_in_scope", set())
+            if call_scope in previous_call_scopes:
                 msg = f"Function {func.__name__} has already been called in {scope}. call_scope={call_scope}"
                 if enforce is True:
                     raise CalledTooOftenError(msg)
                 else:
                     warnings.warn(message=msg, category=CalledTooOftenWarning)
-            else:
-                calls_in_scope.add(call_scope)
-                setattr(wrapper, "calls_in_scope", calls_in_scope)
-                return func(*args, **kwargs)
+            previous_call_scopes.add(call_scope)
+            setattr(wrapper, "calls_in_scope", previous_call_scopes)
+            return func(*args, **kwargs)
 
         return wrapper
 
