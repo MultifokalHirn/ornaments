@@ -2,7 +2,7 @@
 import os
 
 
-def print_logo(terminal_width: int = 80) -> None:  # pragma: no cover
+def print_logo(padded: bool = True) -> None:  # pragma: no cover
     """
     Prints the logo of the project.
 
@@ -11,26 +11,38 @@ def print_logo(terminal_width: int = 80) -> None:  # pragma: no cover
 
     """
     try:
-        terminal_width = os.get_terminal_size().columns
+        term_width = os.get_terminal_size().columns
     except Exception:
-        terminal_width = 80
+        term_width = 80
 
     logo_width = 40
-    padding = int((terminal_width - logo_width) / 2) * " "
-    print("\n")
+    padding = int((term_width - logo_width) / 2) * " "
+    if padded:
 
-    print(padding + "             .::=+=--++=::.             ")
-    print(padding + "         .-+++*-+++ =*+*=++=-:          ")
-    print(padding + "       :+#+-=:-.:+--+++=.=+:=**=.       ")
-    print(padding + "     .+#==::--+#*-...:=%%+-:**==*=      ")
-    print(padding + "    .@%=*=+:*#*.       .#@#-==-==-*.    ")
-    print(padding + "    #@--+=-##::          %@#=:=:+::=    ")
-    print(padding + "   -@@:==+:%+-.          =@=:++=:: -.   ")
-    print(padding + "   *@@:-==:%*-.          =@*+=+-+-.-.   ")
-    print(padding + "   :@@:.-==+@%-          %@===+==: =.   ")
-    print(padding + "    #@-++-=--#%=       :%%----=:. :=    ")
-    print(padding + "     #@=.:-:+++++==:--++=.::=++..:+     ")
-    print(padding + "     :*%#*=:*+: -==:#%#*.==+::..--      ")
-    print(padding + "     ::-+**=++-:=--.*%%%==--.:::.       ")
-    print(padding + "          :--:==-:--:--:-:::::          ")
-    print(padding + "              . . :  : ...              ")
+        def print_func(to_print: str) -> None:
+            print(padding + to_print)
+    else:
+
+        def print_func(to_print: str) -> None:
+            print(to_print)
+
+    print()
+    print_func(r"             .::=+=--++=::.             ")
+    print_func(r"         .-+++*-+++ =*+*=++=-:          ")
+    print_func(r"       :+#+-=:-.:+--+++=.=+:=**=.       ")
+    print_func(r"     .+#==::--+#*-...:=%%+-:**==*=      ")
+    print_func(r"    .@%=*=+:*#*.       .#@#-==-==-*.    ")
+    print_func(r"    #@--+=-##::          %@#=:=:+::=    ")
+    print_func(r"   -@@:==+:%+-.          =@=:++=:: -.   ")
+    print_func(r"   *@@:-==:%*-.          =@*+=+-+-.-.   ")
+    print_func(r"   :@@:.-==+@%-          %@===+==: =.   ")
+    print_func(r"    #@-++-=--#%=       :%%----=:. :=    ")
+    print_func(r"     #@=.:-:+++++==:--++=.::=++..:+     ")
+    print_func(r"     :*%#*=:*+: -==:#%#*.==+::..--      ")
+    print_func(r"     ::-+**=++-:=--.*%%%==--.:::.       ")
+    print_func(r"          :--:==-:--:--:-:::::          ")
+    print_func(r"              . . :  : ...              ")
+
+
+if __name__ == "__main__":  # pragma: no cover
+    print_logo(padded=False)
