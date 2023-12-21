@@ -252,7 +252,7 @@ source-includes = ["tests", "CHANGELOG.md", "LICENSE", "README.md"]
 [tool.pytest.ini_options]
 filterwarnings = [
   "ignore::DeprecationWarning",
-  "ignore::ornaments._exceptions.CalledTooOftenWarning",
+  "ignore::ornaments.exceptions.CalledTooOftenWarning",
 ]
 # cov = ["src/ornaments"]
 # addopts = "--cov=ornaments --cov-report html"
