@@ -1,7 +1,8 @@
+# pragma: no cover
 import os
 
 
-def print_logo(terminal_width: int = 80) -> None:
+def print_logo(terminal_width: int = 80) -> None:  # pragma: no cover
     """
     Prints the logo of the project.
 

@@ -1,13 +1,14 @@
 import warnings
-from collections.abc import Callable
 from functools import wraps
 from typing import Any
+from collections.abc import Callable
 
+from .._types import P, R
 from ..exceptions import CalledTooOftenError, CalledTooOftenWarning
 from ..scopes import CLASS_SCOPE, OBJECT_SCOPE, SESSION_SCOPE
 
 
-def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[..., Any]:
+def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[[Callable[P, R]], Callable[P, R]]:
     """
     Decorator that ensures a function is only called once in a given scope.
 
@@ -23,9 +24,9 @@ def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[.
     ```
     """
 
-    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+    def decorator(func: Callable[P, R]) -> Callable[P, R]:
         @wraps(wrapped=func)
-        def wrapper(*args: Any, **kwargs: Any) -> Any:
+        def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
             if scope in OBJECT_SCOPE:
                 # Use the id of the instance for object scope
                 call_scope = (id(args[0]), func)
@@ -33,7 +34,7 @@ def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[.
                 # Use the class as identifier for session scope
                 # Note: only really useful if the class itself is instantiated more than once
                 # - otherwise, this will behave just as session scope
-                call_scope = (args[0].__class__, func)
+                call_scope = (id(args[0].__class__), func)
             elif scope in SESSION_SCOPE:  # session scope
                 # Use the function itself as identifier for session scope
                 call_scope = (id(func), func)
