@@ -30,25 +30,29 @@ It aims to do so through meaningful `@decorator` functions that help other devel
 
 - [Overview](#overview)
   - [Why decorators?](#why-decorators)
-  - [Example](#example)
-  - [Structure](#structure)
+  - [Scope](#scope)
+- [Usage](#usage)
+  - [But what if I want to use the same function in different contexts? 🤔](#but-what-if-i-want-to-use-the-same-function-in-different-contexts-)
+- [Structure](#structure)
 - [Addendum](#addendum)
 
 </details>
 
 ## Overview
 
-`ornaments` provides functionality for
-
-- various value/type checks as well limiters during runtime
-- various context-dependend logging functionalities (i.e. execution time)
-- *testable* meta information (i.e. deprecation warnings)
-
 ### Why decorators?
 
 A `@decorator` 'talks about' other code in a way that is <u>understandable for both the human reader *as well as* the interpreter</u>. By being meaningful to *both*, `@decorator` based documentation can bypass the (all to common) disconnect between documentation and code.
 
-### Example
+### Scope
+
+`ornaments` provides functionality for adding various
+
+- value/type checks (as well limiters for input/execution duration) during runtime
+- context-dependend logging functionalities (i.e. execution time)
+- *testable* meta information (i.e. deprecation warnings)
+
+## Usage
 
 ``` python
 from ornaments.invariants import only_called_once
@@ -72,15 +76,46 @@ only_once_callable_function()
     ornaments.exceptions.CalledTooOftenError: Function only_once_callable_function has already been called in session. call_scope=(4522676512, <function only_once_callable_function at 0x10d929120>)
 ```
 
-<!-- <img width="1421" alt="Screenshot 2023-12-21 at 01 48 35" src="https://github.com/MultifokalHirn/ornaments/assets/7870758/8fce40d2-65e4-4c1f-8077-d5eb40641bc5"> -->
+### But what if I want to use the same function in different contexts? 🤔
 
-### Structure
+``` python
+from ornaments.invariants import only_called_once
+
+def my_reusable_function() -> None:
+    return None
+
+@only_called_once(scope="session", enforce=True)
+def only_once_callable_function() -> None:
+    return my_reusable_function()
+
+# -----
+
+my_reusable_function()
+>>> None
+
+my_reusable_function()
+>>> None
+
+only_once_callable_function()
+>>> None
+
+# This should raise an error
+only_once_callable_function()
+>>> Traceback (most recent call last):
+    File "<input>", line 1, in <module>
+      only_once_callable_function()
+    File "./ornaments/src/ornaments/invariants/only_called_once.py", line 45, in wrapper
+      raise CalledTooOftenError(msg)
+      ...
+```
+
+<!-- <img width="1421" alt="Screenshot 2023-12-21 at 01 48 35" src="https://github.com/MultifokalHirn/ornaments/assets/7870758/8fce40d2-65e4-4c1f-8077-d5eb40641bc5"> -->
+🚀
+
+## Structure
 
 ``` txt
-ornaments/
-├── exceptions.py
-├── scopes.py
-│
+.
 ├── helpers/
 │   ├── log_execution_time.py
 │   ├── log_parameters.py
@@ -113,4 +148,4 @@ ornaments/
 <br />
 <br />
 
-**Author -** [`MultifokalHirn`](github.com/MultifokalHirn)
+**Author -** [`MultifokalHirn`](https://github.com/MultifokalHirn)
