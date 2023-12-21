@@ -136,15 +136,35 @@ only_once_callable_function()
 
 ```
 
+``` txt
+                     .::=+=--++=::.
+                 .-+++*-+++ =*+*=++=-:
+               :+#+-=:-.:+--+++=.=+:=**=.
+             .+#==::--+#*-...:=%%+-:**==*=
+            .@%=*=+:*#*.       .#@#-==-==-*.
+            #@--+=-##::          %@#=:=:+::=
+           -@@:==+:%+-.          =@=:++=:: -.
+           *@@:-==:%*-.          =@*+=+-+-.-.
+           :@@:.-==+@%-          %@===+==: =.
+            #@-++-=--#%=       :%%----=:. :=
+             #@=.:-:+++++==:--++=.::=++..:+
+             :*%#*=:*+: -==:#%#*.==+::..--
+             ::-+**=++-:=--.*%%%==--.:::.
+                  :--:==-:--:--:-:::::
+                      . . :  : ...
+```
+
 ## Addendum
 >
 > See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
 
 ![License](https://img.shields.io/github/license/MultifokalHirn/ornaments)
 
+<div>
 <img align="center" src="./docs/img/o1.png" width="100" height="100" />
 <img align="center" src="./docs/img/o2.png" width="100" height="100" />
 <img align="center" src="./docs/img/oran.png" width="100" height="100" />
+</div>
 <br />
 <br />
 
