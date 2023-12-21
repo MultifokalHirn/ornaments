@@ -33,7 +33,7 @@ It aims to do so through meaningful `@decorator` functions that help other devel
   - [Scope](#scope)
 - [Usage](#usage)
   - [But what if I want to use the same function in different contexts? 🤔](#but-what-if-i-want-to-use-the-same-function-in-different-contexts-)
-- [Structure](#structure)
+- [Development](#development)
 - [Addendum](#addendum)
 
 </details>
@@ -112,7 +112,7 @@ only_once_callable_function()
 <!-- <img width="1421" alt="Screenshot 2023-12-21 at 01 48 35" src="https://github.com/MultifokalHirn/ornaments/assets/7870758/8fce40d2-65e4-4c1f-8077-d5eb40641bc5"> -->
 🚀
 
-## Structure
+<!-- ## Structure
 
 ``` txt
 .
@@ -152,18 +152,22 @@ only_once_callable_function()
              ::-+**=++-:=--.*%%%==--.:::.
                   :--:==-:--:--:-:::::
                       . . :  : ...
-```
+``` -->
 
-## Addendum
+## Development
 >
 > See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
+
+[![asciicast](https://asciinema.org/a/628233.svg)](https://asciinema.org/a/628233)
+
+## Addendum
 
 ![License](https://img.shields.io/github/license/MultifokalHirn/ornaments)
 
 <div>
-<img align="center" src="./docs/img/o1.png" width="100" height="100" />
-<img align="center" src="./docs/img/o2.png" width="100" height="100" />
-<img align="center" src="./docs/img/oran.png" width="100" height="100" />
+  <img align="center" src="./docs/img/o1.png" width="100" height="100" />
+  <img align="center" src="./docs/img/o2.png" width="100" height="100" />
+  <img align="center" src="./docs/img/oran.png" width="100" height="100" />
 </div>
 <br />
 <br />

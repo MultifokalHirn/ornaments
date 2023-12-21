@@ -10,17 +10,21 @@ Most of the setup is automated with `make`. Check the [`Makefile`](./Makefile) t
   * Linux: visit [gnu.org](https://www.gnu.org/software/make)
   * Windows: `choco install make` or check [chocolatey.org](https://chocolatey.org/install)
 
-
-### Setup
+## Setup
 
 `make` will take care of setting a the virtual environment (it will be located in `.venv`). It will also install `pdm` and with it all dependencies.
 
+Furthermore, it will install `pre-commit` hooks to run checks on staged changes before each commit and to enforce the commit message style.
+
 ``` bash
-make bootstrap
-make dev
+make bootstrap-dev
 ```
 
-### Setting up pre-commit hooks
+### Screencast
+
+[![asciicast](https://asciinema.org/a/628233.svg)](https://asciinema.org/a/628233)
+
+<!-- ### Setting up pre-commit hooks
 
 [`pre-commit`](https://github.com/pre-commit/pre-commit) should be used to run checks on staged changes before each commit and to enforce the commit message style.
 
@@ -28,12 +32,12 @@ Before you start development, please install the hooks like so:
 
 ``` bash
 pre-commit install && pre-commit install --hook-type commit-msg
-```
+``` -->
 
 ## Development
->
+<!-- >
 > In order to have notifications in your terminal on macOS, you can install a package for that like so:
-> `brew install terminal-notifier`
+> `brew install terminal-notifier` -->
 
 To run all of the checks below (formatting, testing, linting, typechecks) run:
 
@@ -41,32 +45,37 @@ To run all of the checks below (formatting, testing, linting, typechecks) run:
 make ci
 ```
 
+### Static Analysis
+
+`ornaments` uses `ruff` for formatting & linting and `mypy` for typechecks.
+
+``` bash
+make format   # ruff formatting and auto-fixes
+make lint     # ruff checks
+make mypy     # mypy
+```
+
 ### Testing
 
-To trigger `pytest` (TODO: and `coverage`):
+To trigger `pytest` and `coverage` run the following:
 
 ``` bash
 make test
 ```
 
-### Static Analysis
-
-By default this project is set up to lint with `flake8` and `mypy`, while `autopep8` and `isort` take care of autofixing. To run linters and static analyzers:
-
-``` bash
-make format   # ruff fixes
-make lint     # ruff checks
-make mypy     # mypy
-```
+This will also generate a coverage badge which is displayed in the README.
 
 ## Commit Message Style
 
 A [uniform commit message style](https://commitizen-tools.github.io/commitizen/tutorials/writing_commits/)
 and [here](https://www.conventionalcommits.org/en/v1.0.0/). for better readibilty shall be enforced to be able to generate a [changelog](./CHANGELOG.md).
 
-Commit message should be prefixed with one of the following:
+### Allowed Prefixes
 
-`fix:` | `feat:` | `docs:` | `style:` | `refactor:` | `perf:` | `test:` | `build:` | `ci:` | `chore:` | `revert:`.
+``` txt
+fix:  feat:  docs:  style:  refactor:  perf:
+test:  build:  ci:  chore:  revert:
+```
 
 ### Example
 

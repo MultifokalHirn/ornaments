@@ -2,26 +2,21 @@
 
 ### Feat
 
-- add devcontainer.json, configure dependabot, minor fixes
+- adds return type checker
+- adds sketches for upcoming decorators
+- add first ornament '@only_called_once' WIP
 
 ### Fix
 
-- template shouldn't give access to itself
+- correct type annotations for decorators
+- return func value on warning still!
+- type annotations were erroneous
+- correct path signatures in tests
+- only called once decorator is tested and added enforce
 
-## 1.0.0 (2023-11-15)
+### Refactor
 
-### Feat
-
-- adds pdm based dependencies
-
-### Fix
-
-- more trying to get makefile to work in github actions; ruff replaces flake8 and "autopep8"
-- misc fixes, starting to work in tox.ini
-- dont install pdm again after bootstrapping; fix import bug
-- try to get tests to work for 3.8
-- pdm cofniguration did not work on systems without a system wide pdm
-- readme
-- update vscode workspace settings to reflect deprecations
-- getting app module to be callable
-- import logic in submodules, fixed linting issues
+- minor makefile improvements
+- fix logo printing
+- separate ornaments into helpers, invariants, limiters, markers and runtime_checks
+- adds warnings and exception classes for our decorators
