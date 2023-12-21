@@ -51,7 +51,7 @@ A `@decorator` 'talks about' other code in a way that is <u>understandable for b
 ### Example
 
 ``` python
-from ornaments.invariants.only_called_once import only_called_once
+from ornaments.invariants import only_called_once
 
 @only_called_once(scope="session", enforce=True)
 def only_once_callable_function() -> None:
