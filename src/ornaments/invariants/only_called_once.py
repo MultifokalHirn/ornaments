@@ -7,7 +7,7 @@ from ..exceptions import CalledTooOftenError, CalledTooOftenWarning
 from ..scopes import CLASS_SCOPE, OBJECT_SCOPE, SESSION_SCOPE
 
 
-def only_called_once(scope="object", enforce: bool = False) -> Callable[..., Callable[..., Any]]:
+def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[..., Any]:
     """
     Decorator that ensures a function is only called once in a given scope.
 
@@ -21,9 +21,9 @@ def only_called_once(scope="object", enforce: bool = False) -> Callable[..., Cal
     ```
     """
 
-    def decorator(func: Callable) -> Callable:
+    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(wrapped=func)
-        def wrapper(*args, **kwargs) -> Any:
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
             if scope in OBJECT_SCOPE:
                 # Use the id of the instance for object scope
                 call_scope = (id(args[0]), func)
@@ -34,7 +34,7 @@ def only_called_once(scope="object", enforce: bool = False) -> Callable[..., Cal
                 call_scope = (args[0].__class__, func)
             elif scope in SESSION_SCOPE:  # session scope
                 # Use the function itself as identifier for session scope
-                call_scope = (func,)
+                call_scope = (id(func), func)
             else:
                 raise ValueError(f"Invalid scope. Must be one of {OBJECT_SCOPE | CLASS_SCOPE | SESSION_SCOPE}.")
 

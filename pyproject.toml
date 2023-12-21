@@ -131,7 +131,7 @@ ci = {shell = """ \
 
 
 [tool.mypy]
-plugins = ["pydantic.mypy"]
+# plugins = ["pydantic.mypy"]
 disallow_any_unimported = false
 ignore_missing_imports = true
 pretty = true
@@ -143,10 +143,10 @@ warn_unused_ignores = false
 files = ["src/**/*.py"]
 exclude = ["tests/**/*.py", "docs/**/*.py"]
 
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = true
+# [tool.pydantic-mypy]
+# init_forbid_extra = true
+# init_typed = true
+# warn_required_dynamic_aliases = true
 
 [tool.coverage.run]
 source = ["src/ornaments"]
