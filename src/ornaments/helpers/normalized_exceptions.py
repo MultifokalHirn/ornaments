@@ -1,0 +1,1 @@
+# @convert_exceptions(to_type, from_types=None): Converts exceptions of specific types (or any exception if from_types is not set) to another type. This can be useful for creating custom exception handling strategies in libraries.
