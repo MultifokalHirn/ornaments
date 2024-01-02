@@ -5,7 +5,7 @@
 
 # Local
 
-from . import exceptions, helpers, invariants, limiters, markers
+from . import exceptions, helpers, invariants, limits, markers
 from .__metadata__ import __description__, __license__, __title__
 from .__version__ import __version__
 
@@ -15,7 +15,7 @@ __all__ = [
     "helpers",
     "invariants",
     "markers",
-    "limiters",
+    "limits",
     # "_types",
     "__title__",
     "__description__",

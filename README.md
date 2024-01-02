@@ -124,7 +124,7 @@ if [typecheck | boolcheck | truthycheck | positivecheck | ...] and [raise | log 
 ## Goal Structure
 
 ``` txt
-.
+ornaments
 ├── helpers
 │   ├── catch_all_exceptions.py
 │   ├── normalized_exceptions.py
@@ -132,7 +132,7 @@ if [typecheck | boolcheck | truthycheck | positivecheck | ...] and [raise | log 
 ├── invariants
 │   ├── conditional_execution.py
 │   └── only_called_once.py
-├── limiters
+├── limits
 │   ├── call_limit.py
 │   └── execution_time_limit.py
 ├── logging
@@ -151,27 +151,26 @@ if [typecheck | boolcheck | truthycheck | positivecheck | ...] and [raise | log 
 ├── runtime_checks
 │   ├── checked_return_type.py
 │   └── parameter_validation.py
-├── safety
-│   └── fallback_function.py
-└── scopes.py
+└── safety
+    └── fallback_function.py
 ```
 
 ``` txt
-                     .::=+=--++=::.
-                 .-+++*-+++ =*+*=++=-:
-               :+#+-=:-.:+--+++=.=+:=**=.
-             .+#==::--+#*-...:=%%+-:**==*=
-            .@%=*=+:*#*.       .#@#-==-==-*.
-            #@--+=-##::          %@#=:=:+::=
-           -@@:==+:%+-.          =@=:++=:: -.
-           *@@:-==:%*-.          =@*+=+-+-.-.
-           :@@:.-==+@%-          %@===+==: =.
-            #@-++-=--#%=       :%%----=:. :=
-             #@=.:-:+++++==:--++=.::=++..:+
-             :*%#*=:*+: -==:#%#*.==+::..--
-             ::-+**=++-:=--.*%%%==--.:::.
-                  :--:==-:--:--:-:::::
-                      . . :  : ...
+               .::=+=--++=::.
+           .-+++*-+++ =*+*=++=-:
+         :+#+-=:-.:+--+++=.=+:=**=.
+       .+#==::--+#*-...:=%%+-:**==*=
+      .@%=*=+:*#*.       .#@#-==-==-*.
+      #@--+=-##::          %@#=:=:+::=
+     -@@:==+:%+-.          =@=:++=:: -.
+     *@@:-==:%*-.          =@*+=+-+-.-.
+     :@@:.-==+@%-          %@===+==: =.
+      #@-++-=--#%=       :%%----=:. :=
+       #@=.:-:+++++==:--++=.::=++..:+
+       :*%#*=:*+: -==:#%#*.==+::..--
+       ::-+**=++-:=--.*%%%==--.:::.
+            :--:==-:--:--:-:::::
+                . . :  : ...
 ```
 
 ## Development
