@@ -33,6 +33,7 @@ It aims to do so through meaningful `@decorator` functions that help other devel
   - [Scope](#scope)
 - [Usage](#usage)
   - [But what if I want to use the same function in different contexts? 🤔](#but-what-if-i-want-to-use-the-same-function-in-different-contexts-)
+- [Goal Structure](#goal-structure)
 - [Development](#development)
 - [Addendum](#addendum)
 
@@ -112,28 +113,47 @@ only_once_callable_function()
 <!-- <img width="1421" alt="Screenshot 2023-12-21 at 01 48 35" src="https://github.com/MultifokalHirn/ornaments/assets/7870758/8fce40d2-65e4-4c1f-8077-d5eb40641bc5"> -->
 🚀
 
-<!-- ## Structure
+<!-- ## Ideas
+
+``` python
+if [typecheck | boolcheck | truthycheck | positivecheck | ...] and [raise | log | ...] error
+```
+
+. -->
+
+## Goal Structure
 
 ``` txt
 .
-├── helpers/
+├── helpers
+│   ├── catch_all_exceptions.py
+│   ├── normalized_exceptions.py
+│   └── retry.py
+├── invariants
+│   ├── conditional_execution.py
+│   └── only_called_once.py
+├── limiters
+│   ├── call_limit.py
+│   └── execution_time_limit.py
+├── logging
+│   ├── log_calls.py
 │   ├── log_execution_time.py
 │   ├── log_parameters.py
-│   └── retry.py
-│
-├── invariants/
-│   └── only_called_once.py
-│
-├── limiters/
-│   └── execution_time_limit.py
-│
-├── markers/
+│   ├── log_return.py
+│   └── log_value.py
+├── markers
+│   ├── stable.py
+│   ├── wobbly.py
 │   └── deprecated.py
-│
-└──  runtime_checks
-    ├── parameter_validation.py
-    └── return_type_validation.py
-
+├── monitoring
+│   ├── monitored_attribute.py
+│   └── monitored_calls.py
+├── runtime_checks
+│   ├── checked_return_type.py
+│   └── parameter_validation.py
+├── safety
+│   └── fallback_function.py
+└── scopes.py
 ```
 
 ``` txt
@@ -152,7 +172,7 @@ only_once_callable_function()
              ::-+**=++-:=--.*%%%==--.:::.
                   :--:==-:--:--:-:::::
                       . . :  : ...
-``` -->
+```
 
 ## Development
 >
