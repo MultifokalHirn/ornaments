@@ -1,6 +1,5 @@
 
 <!-- markdownlint-disable -->
-*****under construction*****
 
 <p align="center">
   <!-- github-banner-start -->
@@ -9,24 +8,22 @@
 </p>
 
 <!-- markdownlint-restore -->
-![GitHub last commit](https://img.shields.io/github/last-commit/MultifokalHirn/ornaments)
+[![Maturity badge - level 1](https://img.shields.io/badge/Maturity-Level%201%20--%20New%20Project-yellow.svg)](https://github.com/tophat/getting-started/blob/master/scorecard.md)
 [![Tests](https://github.com/MultifokalHirn/ornaments/actions/workflows/python-checks.yaml/badge.svg?branch=main)](https://github.com/MultifokalHirn/ornaments/actions/workflows/python-checks.yaml)
 ![Coverage](./docs/img/coverage.svg)
-
+![GitHub last commit](https://img.shields.io/github/last-commit/MultifokalHirn/ornaments)
 <!-- ![GitHub issues](https://img.shields.io/github/issues/MultifokalHirn/ornaments)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MultifokalHirn/ornaments) -->
-
+<img align="right" src="./docs/img/ornaments.png" width="100" height="100" />
 `ornaments` helps to *future-proofly* document the intent of one's `python` code.
-
-<img align="left" src="./docs/img/ornaments.png" width="100" height="100" />
 
 It aims to do so through meaningful `@decorator` functions that help other developers understand, (re-)use, and debug your code.
 
 <br clear="left"/>
 
-<details>
+<!-- <details><summary><h2>Contents</h2></summary> -->
 
-<summary><h2>Contents</h2></summary>
+<h2>Contents</h2>
 
 - [Overview](#overview)
   - [Why decorators?](#why-decorators)
@@ -35,9 +32,8 @@ It aims to do so through meaningful `@decorator` functions that help other devel
   - [But what if I want to use the same function in different contexts? 🤔](#but-what-if-i-want-to-use-the-same-function-in-different-contexts-)
 - [Goal Structure](#goal-structure)
 - [Development](#development)
-- [Addendum](#addendum)
 
-</details>
+<!-- </details> -->
 
 ## Overview
 
@@ -155,31 +151,13 @@ ornaments
     └── fallback_function.py
 ```
 
-``` txt
-               .::=+=--++=::.
-           .-+++*-+++ =*+*=++=-:
-         :+#+-=:-.:+--+++=.=+:=**=.
-       .+#==::--+#*-...:=%%+-:**==*=
-      .@%=*=+:*#*.       .#@#-==-==-*.
-      #@--+=-##::          %@#=:=:+::=
-     -@@:==+:%+-.          =@=:++=:: -.
-     *@@:-==:%*-.          =@*+=+-+-.-.
-     :@@:.-==+@%-          %@===+==: =.
-      #@-++-=--#%=       :%%----=:. :=
-       #@=.:-:+++++==:--++=.::=++..:+
-       :*%#*=:*+: -==:#%#*.==+::..--
-       ::-+**=++-:=--.*%%%==--.:::.
-            :--:==-:--:--:-:::::
-                . . :  : ...
-```
-
 ## Development
 >
 > See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for information on how to setup and contribute to this project.
 
 [![asciicast](https://asciinema.org/a/628233.svg)](https://asciinema.org/a/628233)
 
-## Addendum
+<h2> Addendum </h2>
 
 ![License](https://img.shields.io/github/license/MultifokalHirn/ornaments)
 
@@ -189,6 +167,25 @@ ornaments
   <img align="center" src="./docs/img/oran.png" width="100" height="100" />
 </div>
 <br />
+
+``` txt
+           .::=+=--++=::.
+       .-+++*-+++ =*+*=++=-:
+     :+#+-=:-.:+--+++=.=+:=**=.
+   .+#==::--+#*-...:=%%+-:**==*=
+  .@%=*=+:*#*.       .#@#-==-==-*.
+  #@--+=-##::          %@#=:=:+::=
+ -@@:==+:%+-.          =@=:++=:: -.
+ *@@:-==:%*-.          =@*+=+-+-.-.
+ :@@:.-==+@%-          %@===+==: =.
+  #@-++-=--#%=       :%%----=:. :=
+   #@=.:-:+++++==:--++=.::=++..:+
+   :*%#*=:*+: -==:#%#*.==+::..--
+   ::-+**=++-:=--.*%%%==--.:::.
+        :--:==-:--:--:-:::::
+            . . :  : ...
+```
+
 <br />
 
 **Author -** [`MultifokalHirn`](https://github.com/MultifokalHirn)
