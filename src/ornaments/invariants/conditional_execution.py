@@ -1,8 +1,8 @@
 from collections.abc import Callable
 from functools import wraps
-from typing import ParamSpec
+from typing import Any, ParamSpec
 
-from ornaments._types import Decorator, P, R
+from ornaments._types import P, R
 
 C = ParamSpec("C")
 
@@ -40,7 +40,7 @@ C = ParamSpec("C")
 #     return decorator
 
 
-def not_called_if(condition_func: Callable[[], bool], warn: bool = False) -> Decorator:
+def not_called_if(condition_func: Callable[[], bool], warn: bool = False) -> Callable:
     """
     Decorator that ensures a function is only called if a provided condition function returns True.
 
@@ -62,7 +62,7 @@ def not_called_if(condition_func: Callable[[], bool], warn: bool = False) -> Dec
     ```
     """
 
-    def decorator(func: Callable[P, R]) -> Callable[P, R | None]:
+    def decorator(func: Callable[P, R]) -> Callable[P, R | Any | None]:
         @wraps(wrapped=func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R | None:
             if condition_func() is True:

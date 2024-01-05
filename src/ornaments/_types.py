@@ -6,12 +6,12 @@ from typing import Any, ParamSpec, TypeAlias, TypeVar
 
 P = ParamSpec("P")
 R = TypeVar("R", covariant=True)  # Return type
-AltR: TypeAlias = Any | None
+AltR = TypeVar("AltR", bound=Any | None)
 
 # Decoratable: TypeAlias = Callable[Params, ReturnType]
 Decoratable: TypeAlias = Callable[P, R]
 AlteredDecoratable: TypeAlias = Callable[P, R | AltR]
 
-Decorator = Callable[[Decoratable], Decoratable]
-D = ParamSpec("D")  # DecoratorParams
+# Decorator = Callable[[Callable[P, R]], Callable[P, R] | Callable[P, R | AltR]]
+# D = ParamSpec("D")  # DecoratorParams
 # DecoratorParams = ParamSpec("DecoratorParams")

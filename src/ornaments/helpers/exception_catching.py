@@ -4,7 +4,7 @@ from collections.abc import Callable
 from functools import wraps
 from typing import Any
 
-from ornaments._types import Decorator, P, R
+from ornaments._types import P, R
 from ornaments._warnings import UncaughtExceptionWarning
 
 # def catch_exception(function: Callable[P, T]) -> Callable[P, Optional[T]]:
@@ -19,7 +19,7 @@ from ornaments._warnings import UncaughtExceptionWarning
 
 def catch_exceptions(
     exceptions: list[type[BaseException]] = [BaseException], fallback_return: Any | None = None, warn_uncaught: bool = False
-) -> Decorator:
+) -> Callable[P, R | Any | None]:
     def decorator(func: Callable[P, R]) -> Callable[P, R | Any | None]:
         @wraps(wrapped=func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R | Any | None:
