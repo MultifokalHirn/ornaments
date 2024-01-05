@@ -1,5 +1,6 @@
 import pytest
-from ornaments.exceptions import CalledTooOftenError, CalledTooOftenWarning
+from ornaments._exceptions import CalledTooOftenError
+from ornaments._warnings import CalledTooOftenWarning
 from ornaments.invariants import only_called_once
 
 # ---------------------------------------------------------------

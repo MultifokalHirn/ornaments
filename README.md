@@ -70,7 +70,7 @@ only_once_callable_function()
       only_once_callable_function()
     File "./ornaments/src/ornaments/invariants/only_called_once.py", line 45, in wrapper
       raise CalledTooOftenError(msg)
-    ornaments.exceptions.CalledTooOftenError: Function only_once_callable_function has already been called in session. call_scope=(4522676512, <function only_once_callable_function at 0x10d929120>)
+    ornaments._exceptions.CalledTooOftenError: Function only_once_callable_function has already been called in session. call_scope=(4522676512, <function only_once_callable_function at 0x10d929120>)
 ```
 
 ### But what if I want to use the same function in different contexts? 🤔

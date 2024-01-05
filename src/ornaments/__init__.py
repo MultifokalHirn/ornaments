@@ -5,13 +5,13 @@
 
 # Local
 
-from . import exceptions, helpers, invariants, limits, markers
+from . import _exceptions, helpers, invariants, limits, markers
 from .__metadata__ import __description__, __license__, __title__
 from .__version__ import __version__
 
 # Public Re-Exports
 __all__ = [
-    "exceptions",
+    "_exceptions",
     "helpers",
     "invariants",
     "markers",

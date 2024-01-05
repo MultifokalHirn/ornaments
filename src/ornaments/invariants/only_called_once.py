@@ -1,11 +1,12 @@
 import warnings
+from collections.abc import Callable
 from functools import wraps
 from typing import Any
-from collections.abc import Callable
 
-from .._types import P, R
-from ..exceptions import CalledTooOftenError, CalledTooOftenWarning
-from ..scopes import CLASS_SCOPE, OBJECT_SCOPE, SESSION_SCOPE
+from ornaments._exceptions import CalledTooOftenError
+from ornaments._types import P, R
+from ornaments._warnings import CalledTooOftenWarning
+from ornaments.scopes import CLASS_SCOPE, OBJECT_SCOPE, SESSION_SCOPE
 
 
 def only_called_once(scope: str = "object", enforce: bool = False) -> Callable[[Callable[P, R]], Callable[P, R]]:

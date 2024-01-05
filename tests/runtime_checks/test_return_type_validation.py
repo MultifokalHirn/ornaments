@@ -1,5 +1,6 @@
 import pytest
-from ornaments.exceptions import InvalidReturnTypeError, InvalidReturnTypeWarning
+from ornaments._exceptions import InvalidReturnTypeError
+from ornaments._warnings import InvalidReturnTypeWarning
 from ornaments.runtime_checks import checked_return_type
 
 
