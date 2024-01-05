@@ -4,7 +4,7 @@
 asttokens==2.4.1
 devtools==0.12.2
 executing==2.0.1
-importlib-metadata==6.11.0
+importlib-metadata==7.0.1
 markdown-it-py==3.0.0
 mdurl==0.1.2
 pyboxen==1.2.0
